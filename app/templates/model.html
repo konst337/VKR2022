@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<h2> Конструктор тактик и техник по ФСТЭК </h2>
+{% endblock %}
+
+
+{% block body %}
+
+<form method="POST" action="{{ url_for('model') }}">
+
+    <div class="accordion mb-3" id="accordionExample">
+        <div class="accordion-item text-primary">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed bg-info text-light" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Настройки
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body ">
+                    <div class="my-3">
+                        <label for="intrd" class="form-label px-3">Тип нарушителя</label>
+                        <select class="form-select" id="intrd" aria-label="Default select example">
+                            <option selected>Любой</option>
+                            <option value="1">Внутренний</option>
+                            <option value="2">Внешний</option>
+                        </select>
+                    </div>
+                    <div class="my-3">
+                        <label for="platfm" class="form-label px-3">Платформа реализации</label>
+                        <select class="form-select" name="platform" id="platfm" aria-label="Default select example">
+                            <option value="any" selected>Любая</option>
+                            <option value="Linux">Linux</option>
+                            <option value="Windows">Windows</option>
+                            <option value="macOS">macOS</option>
+                            <option value="PRE">Предварительная компрометация</option>
+                            <option value="Containers">Контейнеры</option>
+                            <option value="Network">Сеть</option>
+                            <option value="Azure AD">Azure AD</option>
+                            <option value="Google Workspace">Google Workspace</option>
+                            <option value="IaaS">IaaS</option>
+                            <option value="SaaS">SaaS</option>
+                            <option value="Office 365">Office 365</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion my-2" id="accordionMain">
+
+        {% for T in map1 %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading{{loop.index}}">
+                <button class="accordion-button collapsed bg-success text-light" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse{{loop.index}}" aria-expanded="false"
+                    aria-controls="collapse{{loop.index}}">
+                    {{ T }}
+                </button>
+            </h2>
+            <div id="collapse{{loop.index}}" class="accordion-collapse collapse"
+                aria-labelledby="heading{{loop.index}}">
+                <div class="accordion-body">
+                    <ul class="list-group">
+                        {% for i in map1[T] %}
+                        <li class="list-group-item" onclick="act(this);" id="{{ i[:6].strip() }}">{{ i }} </li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <input type="hidden" id="techs" name="techs" value="">
+    <button type="submit" class="btn btn-info btn-block" onclick="sendTechs()"> Создать </button>
+</form>
+
+
+{% endblock %}

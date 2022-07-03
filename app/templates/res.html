@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% if answ == 1 %}
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">Скачать готовый файл</h2>
+        <p class="card-text">Файл формата *.xlsx</p>
+        <a href="{{ url_for('download') }}" class="btn btn-success">Скачать</a>
+    </div>
+</div>
+
+{% else %}
+
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">Ничего не найдено по заданным настройкам</h2>
+        <p class="card-text">Попробуйте поменять настройки</p>
+        <a href="{{ url_for('model') }}" class="btn btn-danger">Назад</a>
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}
+{% block body %}
+{% endblock %}

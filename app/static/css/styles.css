@@ -1,0 +1,26 @@
+.accordion-body {
+  margin: 0;
+  padding: 0;
+}
+
+.active {
+  background-color: #ff9500 !important;
+}
+
+.list-group-item {
+  cursor: pointer;
+}
+
+.list-group {
+  border-radius: 0 !important;
+}
+
+.navbar {
+  padding: 0;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+p{
+  font-size: 1.4em;
+  text-align: justify;
+}
